@@ -27,7 +27,11 @@
 export default {
   name: "carro",
   props: ["carro", "contenedor"],
-
+  data() {
+    return {
+      
+    }
+  },
   methods: {
     eliminar(e){
             let option = e.target.id

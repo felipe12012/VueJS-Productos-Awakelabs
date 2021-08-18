@@ -4,56 +4,12 @@
     
     <div class="container-fluid">
             <div class="row text-center">
-                <form class="col-3 ms-3">
-                    <h2 class="fas fa-camera fa-2x"></h2>
-                    <h4 class="font-weight-bold text-center">Agrega tu Producto</h4>
-                    <div class="my-3 pr-3">
-                        <label for="nombre">Nombre de producto</label>
-                        <input
-                            class="form-control"
-                            v-model="nombre"
-                            type="text"
-                            name="nombre"
-                            id="nombre"
-                            placeholder="nombre producto"
-                        />
-                    </div>
-                    <div class="my-3 pr-3">
-                        <label for="cantidad">Cantidad</label>
-                        <input
-                            class="form-control"
-                            v-model="cantidad"
-                            type="text"
-                            name="cantidad"
-                            id="cantidad"
-                            placeholder="Cantidad"
-                        />
-                    </div>
-                    <div class="my-3 pr-3">
-                        <label for="url">url de producto</label>
-                        <input
-                            class="form-control"
-                            v-model="url"
-                            type="text"
-                            name="url"
-                            id="url"
-                            placeholder="Ej:https://www.images.com/image.jpg"
-                        />
-                    </div>
-                    <button class="btn btn-outline-success btn-lg" type="button" @click="agregarProducto">Agregar</button>
-                </form>
+                <formulario :contenedor="contenedor" :agregar="agregarProducto" />
 
-              
                 <div class="row col-6 d-flex justify-content-between">
                     <h2 class="far fas fa-check-square fa-2x "></h2>
                     <h4 class="font-weight-bold text-center">Opciones de Productos</h4>
-                    <!-- <div v-for="cont of contenedor" :key="cont.id" class="card col-4 ">
-                        <img class="img-fluid" :src="cont.url" />
-                        <h3>{{cont.nombre}}</h3>
-                        <p>{{cont.cantidad}}</p>
-                    </div> -->
                     <productos
-
                         :contenedor="contenedor"
                         :carro="carro"
                     ></productos>
@@ -67,10 +23,6 @@
                             :contenedor="contenedor"
                         ></carrito>
                     </div>
-                    <!-- <div class="card" v-for="carr of carrito">
-                        <img :src="carr.url" class="img-fluid" alt="">
-                        <h1>{{carr.nombre}}</h1>
-                    </div> -->
                     
                 </div>
             </div>
@@ -83,7 +35,8 @@
 import headers from "./components/Header.vue";
 import footers from "./components/Footer.vue";
 import productos from "./components/Productos.vue";
-import carrito from "./components/Carro.vue"
+import carrito from "./components/Carro.vue";
+import formulario from "./components/Form.vue"
 
 export default {
   name: "App",
@@ -91,7 +44,8 @@ export default {
     headers,
     footers,
     productos,
-    carrito
+    carrito,
+    formulario
   },
   data() {
     
@@ -118,19 +72,15 @@ export default {
             url:'https://picsum.photos/id/766/200/300'
         }],
         nuevoProducto:null,
-        carro:[]
+        carro:[],
+        // producto:''
     }
     
   },
   methods: {
-    agregarProducto(){
-            let producto= {
-                id: this.contenedor.length+1,
-                nombre : this.nombre,
-                cantidad: this.cantidad,
-                url: this.url
-            }
-            console.log(this.contenedor.length)
+    agregarProducto(producto){
+            
+            console.log(this.contenedor)
             this.contenedor.push(producto)
         }
   },
